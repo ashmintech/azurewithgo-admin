@@ -23,35 +23,74 @@
 <body>
 
 {{template "topmenu"}}
-  
- <div class="table-responsive-sm col-md-8">
-<h3>Devices</h3>
+
+<div class="table-responsive-sm col-md-8">
+<h3>Device</h3>
+
 <table class="table table-hover table-sm">
+
   <thead class="thead-dark">
     <tr>
       <th scope="col">Device Name</th>
       <th scope="col">Device Type</th>
       <th scope="col">Active</th>
       <th scope="col">Creation Date</th>
-      <th scope="col">Details</th>
-
+     
     </tr>
   </thead>
+
   <tbody>
-  
-  {{range .}}
     <tr>
-      <th scope="row">{{.DeviceName}}</th>
-      <td>{{.DeviceType}}</td>
-      <td>{{.DeviceStatus}}</td>
-      <td>{{.DeviceCreationDate}}</td>
-      <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
+      {{$d := .Dev}}
+      <th scope="row">{{$d.DeviceName}}</th>
+      <td>{{$d.DeviceType}}</td>
+      <td>{{$d.DeviceStatus}}</td>
+      <td>{{$d.DeviceCreationDate}}</td>
+     
     </tr>
-  {{end}} 
-   
   </tbody>
 </table>
 </div>
- 
+
+<div class="table-responsive-sm col-md-8">
+<h3>Customer</h3>
+   
+   {{$c := .Cust}}
+   
+{{if $c}}
+
+
+<table class="table table-hover table-sm">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Subscription Type</th>
+      <th scope="col">Active</th>
+      <th scope="col">Member Since</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      
+      <th scope="row">{{$c.LName}}, {{$c.FName}} </th>
+      <td>{{$c.SubType}}</td>
+      <td>{{$c.Active}}</td>
+      <td>{{$c.CreationDate}}</td>
+     
+    </tr>
+  </tbody>
+</table>
+
+
+
+{{else}}
+<h5>Customer Not Found</h5>
+{{end}}
+
+</div>
+
 </body>
 </html>

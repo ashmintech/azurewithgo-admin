@@ -23,35 +23,82 @@
 <body>
 
 {{template "topmenu"}}
-  
- <div class="table-responsive-sm col-md-8">
-<h3>Devices</h3>
+
+<div class="table-responsive-sm col-md-8">
+<h3>Customer</h3>
+
 <table class="table table-hover table-sm">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer Address</th>
+      <th scope="col">Customer Email</th>
+      <th scope="col">Customer Phone</th>
+      <th scope="col">Subscription Type</th>
+      <th scope="col">Member Since </th>
+      <th scope="col">Active</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      {{$c := .Cust}}
+      <th scope="row">{{$c.LName}}, {{$c.LName}}</th>
+      <td>{{$c.Address}}</td>
+      <td>{{$c.Email}}</td>
+      <td>{{$c.Phone}}</td>
+      <td>{{$c.SubType}}</td>
+      <td>{{$c.CreationDate}}</td>
+      <td>{{$c.Active}}</td>
+     
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+<div class="table-responsive-sm col-md-8">
+<h3>Devices</h3>
+   
+   {{$d := .Dev}}
+   
+{{if $d}}
+
+
+<table class="table table-hover table-sm">
+
   <thead class="thead-dark">
     <tr>
       <th scope="col">Device Name</th>
       <th scope="col">Device Type</th>
       <th scope="col">Active</th>
-      <th scope="col">Creation Date</th>
-      <th scope="col">Details</th>
-
+      <th scope="col">Created Since</th>
+     
     </tr>
   </thead>
+
   <tbody>
-  
-  {{range .}}
+  {{range $d}}
     <tr>
-      <th scope="row">{{.DeviceName}}</th>
+      
+      <th scope="row">{{.DeviceID}} </th>
       <td>{{.DeviceType}}</td>
       <td>{{.DeviceStatus}}</td>
       <td>{{.DeviceCreationDate}}</td>
-      <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
+     
     </tr>
-  {{end}} 
-   
+    {{end}}
   </tbody>
 </table>
+
+
+
+{{else}}
+<h5>No Devices Associated</h5>
+{{end}}
 </div>
- 
+
 </body>
 </html>

@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	cont "github.com/ashmintech/azurewithgo-admin/module3/controller"
+	cont "github.com/ashmintech/azurewithgo-admin/module4/controller"
 )
 
 const hostAddress = ":9000"
@@ -21,7 +21,10 @@ func main() {
 
 	admin := r.Methods(http.MethodGet).Subrouter()
 	admin.HandleFunc("/admin", cont.AdminPortal)
-
+	admin.HandleFunc("/admin/devices", cont.Devices)
+	admin.HandleFunc("/admin/devices/{id}", cont.DeviceDetails)
+	admin.HandleFunc("/admin/customers", cont.Customers)
+	admin.HandleFunc("/admin/customers/{id}", cont.CustomerDetails)
 	admin.Use(cont.AdminMiddleware)
 
 	// Static Files

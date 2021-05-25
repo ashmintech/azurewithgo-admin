@@ -25,27 +25,26 @@
 {{template "topmenu"}}
   
  <div class="table-responsive-sm col-md-8">
-<h3>Devices</h3>
+<h3>Customers</h3>
 <table class="table table-hover table-sm">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Device Name</th>
-      <th scope="col">Device Type</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Email</th>
       <th scope="col">Active</th>
-      <th scope="col">Creation Date</th>
       <th scope="col">Details</th>
-
     </tr>
   </thead>
   <tbody>
   
   {{range .}}
     <tr>
-      <th scope="row">{{.DeviceName}}</th>
-      <td>{{.DeviceType}}</td>
-      <td>{{.DeviceStatus}}</td>
-      <td>{{.DeviceCreationDate}}</td>
-      <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
+      <th scope="row">{{.LName}}, {{.FName}}</th>
+      <td>{{.Address}}</td>
+      <td>{{.Email}}</td>
+      <td>{{.Active}}</td>
+      <td><a href="/admin/customers/{{.CustID}}">Customer details</a></td>
     </tr>
   {{end}} 
    

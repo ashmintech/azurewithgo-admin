@@ -6,14 +6,19 @@ import (
 
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 
-	//	data "github.com/ashmintech/azurewithgo-admin/moule3/data"
+	"github.com/ashmintech/azurewithgo-admin/module4/data"
 
 	"github.com/pborman/uuid"
 )
 
 func AdminPortal(w http.ResponseWriter, r *http.Request) {
 
-	if err := tpl.ExecuteTemplate(w, "admin.gohtml", nil); err != nil {
+	// Send the total number of customers and Devices..
+
+	type totalCount struct {
+		CustCount, DevCount int
+	}
+	if err := tpl.ExecuteTemplate(w, "admin.gohtml", totalCount{data.GetCustomerCount(), data.GetDeviceCount()}); err != nil {
 		log.Fatalln("Not able to call the template", err)
 	}
 }
