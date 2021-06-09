@@ -6,8 +6,6 @@ import (
 
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 
-	//	data "github.com/ashmintech/azurewithgo-admin/moule3/data"
-
 	"github.com/pborman/uuid"
 )
 
