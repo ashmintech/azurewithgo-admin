@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	cont "github.com/ashmintech/azurewithgo-admin/module3/controller"
+	cont "github.com/ashmintech/azurewithgo-admin/controller"
 )
 
 const hostAddress = ":9000"
