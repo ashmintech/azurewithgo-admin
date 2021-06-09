@@ -64,3 +64,19 @@ func GetDevices(d []string) Devices {
 	return dList
 
 }
+
+func ToggleStatus(d string) (*Device, bool) {
+
+	if dev, found := GetDevice(d); found {
+		if dev.DeviceStatus == "Active" {
+			dev.DeviceStatus = "Inactive"
+		} else {
+			dev.DeviceStatus = "Active"
+		}
+		return dev, true
+
+	} else {
+		return nil, false
+	}
+
+}

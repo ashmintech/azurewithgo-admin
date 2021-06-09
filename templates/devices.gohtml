@@ -31,7 +31,7 @@
     <tr>
       <th scope="col">Device Name</th>
       <th scope="col">Device Type</th>
-      <th scope="col">Active</th>
+      <th scope="col">Device State</th>
       <th scope="col">Creation Date</th>
       <th scope="col">Details</th>
 
@@ -43,9 +43,13 @@
     <tr>
       <th scope="row">{{.DeviceName}}</th>
       <td>{{.DeviceType}}</td>
-      <td>{{.DeviceStatus}}</td>
+      <td>{{.DeviceStatus}}
+
+      </td>
+
+
       <td>{{.DeviceCreationDate}}</td>
-      <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
+     <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
     </tr>
   {{end}} 
    

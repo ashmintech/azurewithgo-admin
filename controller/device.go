@@ -22,6 +22,23 @@ func findCustomer4Device(d string) (*data.Customer, bool) {
 	return data.GetCustomer4Device(d)
 }
 
+func DeviceToggleStatus(w http.ResponseWriter, r *http.Request) {
+
+	devID := path.Base(r.URL.Path)
+	
+	d, ok := data.ToggleStatus(devID)
+
+	if !ok {
+		http.Redirect(w, r, "/admin/devices", http.StatusSeeOther)
+		return
+	} else {
+		http.Redirect(w, r, "/admin/devices/"+d.DeviceID, http.StatusSeeOther)
+		return
+
+	}
+
+}
+
 func DeviceDetails(w http.ResponseWriter, r *http.Request) {
 
 	devID := path.Base(r.URL.Path)
