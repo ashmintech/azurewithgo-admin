@@ -1,4 +1,4 @@
-module github.com/ashmintech/azurewithgo-admin/module4
+module github.com/ashmintech/azurewithgo-admin
 
 go 1.16
 

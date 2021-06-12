@@ -6,7 +6,7 @@ import (
 
 	"github.com/Azure/go-autorest/autorest/azure/auth"
 
-	"github.com/ashmintech/azurewithgo-admin/module4/data"
+	"github.com/ashmintech/azurewithgo-admin/data"
 
 	"github.com/pborman/uuid"
 )
