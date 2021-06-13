@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/ashmintech/azurewithgo-admin/module4/data"
+	"github.com/ashmintech/azurewithgo-admin/data"
 )
 
 func Customers(w http.ResponseWriter, r *http.Request) {

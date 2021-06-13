@@ -26,14 +26,18 @@
   <tbody>
     <tr>
       {{$c := .Cust}}
-      <th scope="row">{{$c.LName}}, {{$c.LName}}</th>
+      <th scope="row">{{$c.LName}}, {{$c.FName}}</th>
       <td>{{$c.Address}}</td>
       <td>{{$c.Email}}</td>
       <td>{{$c.Phone}}</td>
       <td>{{$c.SubType}}</td>
       <td>{{$c.CreationDate}}</td>
-      <td>{{$c.Active}}</td>
-     
+      {{if eq $c.Active true}} 
+        <td>Yes</td>
+      {{else}}
+        <td>No</td>
+      {{end}}
+            
     </tr>
   </tbody>
 </table>
@@ -56,7 +60,7 @@
       <th scope="col">Device Type</th>
       <th scope="col">Active</th>
       <th scope="col">Created Since</th>
-     
+     <th scope="col">Device Details</th>
     </tr>
   </thead>
 
@@ -68,6 +72,7 @@
       <td>{{.DeviceType}}</td>
       <td>{{.DeviceStatus}}</td>
       <td>{{.DeviceCreationDate}}</td>
+      <td><a href="/admin/devices/{{.DeviceID}}">Device details</a></td>
      
     </tr>
     {{end}}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+
+<div class="table-responsive-sm col-md-6 text-center">
+<h3>Device Jobs</h3>
+ <table>
+
+{{range .}}
+  <tr><td>
+  
+    {{if eq .JobStatus "Stopped"}}
+        <button type="button" class="btn btn-danger" disabled>
+        {{.JobDisplayName}}: <span class="badge badge-light">{{.JobStatus}}</span>
+        </button>
+    {{else}}
+        <button type="button" class="btn btn-success">
+        {{.JobDisplayName}}: <span class="badge badge-light">{{.JobStatus}}</span>
+        </button>
+    {{end}}
+  
+  </td></tr>
+{{end}}
+
+
+</table>
+</div>
+
+</body>
+</html>
+
+

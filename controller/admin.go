@@ -25,14 +25,12 @@ func AdminPortal(w http.ResponseWriter, r *http.Request) {
 
 func AdminMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-
 		// Set cookie and session
 		cook, err = r.Cookie("adminsession")
-		if err == http.ErrNoCookie {
+		if err == http.ErrNoCookie || authorize == nil {
 			if authorize, err = auth.NewAuthorizerFromEnvironment(); err != nil {
 				log.Fatal("Error while Authorization using env variables\n", err)
 			}
-
 			if subscriptionID == "" {
 				http.Error(w, "Azure Subscription details does not exist", http.StatusNotFound)
 				return

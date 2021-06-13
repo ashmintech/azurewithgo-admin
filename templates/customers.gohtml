@@ -24,7 +24,11 @@
       <th scope="row">{{.LName}}, {{.FName}}</th>
       <td>{{.Address}}</td>
       <td>{{.Email}}</td>
-      <td>{{.Active}}</td>
+      {{if eq .Active true}} 
+        <td>Yes</td>
+      {{else}}
+        <td>No</td>
+      {{end}}
       <td><a href="/admin/customers/{{.CustID}}">Customer details</a></td>
     </tr>
   {{end}} 

@@ -29,9 +29,9 @@
       <td>
           {{$d.DeviceStatus}}
           {{if eq $d.DeviceStatus "Active"}}
-            <a href="/admin/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-danger" value="Deactivate"></a>
+            <a href="/admin/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-danger btn-sm" value="Deactivate"></a>
           {{else}}
-            <a href="/admin/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-primary" value="Activate"></a>
+            <a href="/admin/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-primary btn-sm" value="Activate"></a>
           {{end}}
       </td>
 
@@ -67,7 +67,12 @@
       
       <th scope="row">{{$c.LName}}, {{$c.FName}} </th>
       <td>{{$c.SubType}}</td>
-      <td>{{$c.Active}}</td>
+      {{if eq $c.Active true}} 
+        <td>Yes</td>
+      {{else}}
+        <td>No</td>
+      {{end}}
+     
       <td>{{$c.CreationDate}}</td>
      
     </tr>
@@ -102,11 +107,7 @@
     Fridge Temp: <span class="badge badge-light">4</span>
   </button>
   </div>
-  <div class="col-md-2">
-  </div>
-
-  <div class="col-md-2">
-  </div>
+  
   <div class="table-responsive-sm col-md-8">
   <h3>Device Monitoring</h3>
   <button type="button" class="btn btn-success btn-lg">
@@ -135,8 +136,12 @@
 
   
 {{else}}
-<h3>Device is not active.</h3> <a href="/admin/devicestatus/{{$d.DeviceID}}">Activate</a>
+   <div class="table-responsive-sm col-md-4">
+    <h3>Device is not active.</h3>
+    </div>
 {{end}}
+
+
 
 
 </body>

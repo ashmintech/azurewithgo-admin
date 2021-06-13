@@ -65,7 +65,7 @@ func GetDevices(d []string) Devices {
 
 }
 
-func ToggleStatus(d string) (*Device, bool) {
+func ToggleDeviceStatus(d string) (*Device, bool) {
 
 	if dev, found := GetDevice(d); found {
 		if dev.DeviceStatus == "Active" {
