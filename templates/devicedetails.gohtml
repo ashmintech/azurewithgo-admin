@@ -88,52 +88,13 @@
 </div>
 
 {{if eq $d.DeviceStatus "Active"}}
-
-  <div class="table-responsive-sm col-md-8">
-  <h3>Device Data</h3>
-  <button type="button" class="btn btn-success btn-lg">
-    Date: <span class="badge badge-light">May 22, 2021</span>
-  </button>
-
-  <button type="button" class="btn btn-secondary btn-lg">
-    Fridge Temp: <span class="badge badge-light">-4&#176; F</span>
-  </button>
-
-  <button type="button" class="btn btn-primary btn-lg">
-    Freezer Temp: <span class="badge badge-light">4</span>
-  </button>
-
-  <button type="button" class="btn btn-primary btn-lg">
-    Fridge Temp: <span class="badge badge-light">4</span>
-  </button>
-  </div>
-  
-  <div class="table-responsive-sm col-md-8">
-  <h3>Device Monitoring</h3>
-  <button type="button" class="btn btn-success btn-lg">
-    Date: <span class="badge badge-light">May 22, 2021</span>
-  </button>
-
-  <button type="button" class="btn btn-secondary btn-lg">
-    Fridge Temp: <span class="badge badge-light">-4&#176; F</span> Range
-  </button>
-
-  <button type="button" class="btn btn-primary btn-lg">
-    Freezer Temp: <span class="badge badge-light">4</span>
-  </button>
-
-  <button type="button" class="btn btn-primary btn-lg">
-    Fridge Temp: <span class="badge badge-light">4</span>
-  </button>
-
-  <button type="button" class="btn btn-primary btn-lg">
-    Fridge Temp: <span class="badge badge-light">4</span>
-  </button>
-  </div>
-  <div class="col-md-2">
-  </div>
-
-
+<script type="text/javascript">
+       setInterval(refreshIframe1, 20000);
+       function refreshIframe1() {
+           $("#devicedataframe")[0].src = $("#devicedataframe")[0].src;
+       }
+   </script>
+   <iframe src="/admin/devicedata/{{$d.DeviceID}}" marginwidth="0" marginheight="0" width="800" height="400" scrolling="no" frameborder=0 name="devicedataframe" id="devicedataframe"></iframe>
   
 {{else}}
    <div class="table-responsive-sm col-md-4">

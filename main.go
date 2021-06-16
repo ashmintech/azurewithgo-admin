@@ -21,9 +21,9 @@ func main() {
 
 	admin := r.Methods(http.MethodGet).Subrouter()
 	admin.HandleFunc("/admin", cont.AdminPortal)
-	admin.HandleFunc("/admin/devicejobs", cont.DeviceJobs)
 	admin.HandleFunc("/admin/devices", cont.Devices)
 	admin.HandleFunc("/admin/devices/{id}", cont.DeviceDetails)
+	admin.HandleFunc("/admin/devicedata/{id}", cont.DeviceData)
 	admin.HandleFunc("/admin/customers", cont.Customers)
 	admin.HandleFunc("/admin/customers/{id}", cont.CustomerDetails)
 	admin.HandleFunc("/admin/files", cont.Files)

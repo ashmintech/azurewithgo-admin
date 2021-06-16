@@ -14,7 +14,7 @@ type Device struct {
 
 var DeviceList = []*Device{
 	{
-		DeviceID:           "testiotdevice1",
+		DeviceID:           "smartdevice1",
 		DeviceName:         "Device Name 1",
 		DeviceModel:        "Globomantics Fridge",
 		DeviceType:         "Fridge",
@@ -23,7 +23,7 @@ var DeviceList = []*Device{
 	},
 
 	{
-		DeviceID:           "testiotdevice2",
+		DeviceID:           "smartdevice2",
 		DeviceName:         "Device Name 2",
 		DeviceModel:        "Globomantics Fridge",
 		DeviceType:         "Fridge",

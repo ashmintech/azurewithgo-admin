@@ -8,11 +8,11 @@ type C2D struct {
 var C2DList = []C2D{
 	{
 		CustomerID: "custid1",
-		DeviceID:   "testiotdevice1",
+		DeviceID:   "smartdevice1",
 	},
 	{
 		CustomerID: "custid1",
-		DeviceID:   "testiotdevice2",
+		DeviceID:   "smartdevice2",
 	},
 }
 
