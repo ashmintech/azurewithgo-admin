@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/Azure/go-autorest/autorest"
+	"github.com/ashmintech/azurewithgo-admin/data"
 )
 
 var tpl *template.Template
@@ -28,5 +29,7 @@ func init() {
 	if cID == "" || cSecret == "" || tID == "" || subscriptionID == "" {
 		log.Fatalln("Not able to set environmental variables")
 	}
+
+	go data.RunEventHubListener()
 
 }

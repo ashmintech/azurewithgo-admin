@@ -19,7 +19,6 @@ type DeviceData struct {
 	CountFridge  int     `json:"countfridgetemp"`
 	AvgFreezer   float64 `json:"avgfreezertemp"`
 	CountFreezer int     `json:"countfreezertemp"`
-	
 }
 
 type sendDeviceData struct {
@@ -30,14 +29,7 @@ type sendDeviceData struct {
 
 var data = []DeviceData{}
 
-func init() {
-	log.Println("In DeviceData init function")
-	go runEventHubListener()
-}
-
 func GetDeviceData(devID string, day int) []sendDeviceData {
-	log.Println("Get Device Data for:", devID)
-	log.Println("Data for Day:", day)
 
 	sendData := []sendDeviceData{}
 
@@ -51,17 +43,13 @@ func GetDeviceData(devID string, day int) []sendDeviceData {
 				fmt.Sprintf("%.2f", b.AvgFreezer),
 			}
 			sendData = append(sendData, a)
-
 		}
 	}
-	log.Println(sendData)
-
-	//log.Println("Length of Data:", len(data))
 	return sendData
 }
 
-func runEventHubListener() {
-	log.Println("In Event Hub function")
+func RunEventHubListener() {
+
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
@@ -75,31 +63,22 @@ func runEventHubListener() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	log.Println("Starting Event Hub Handler")
 
 	handler := func(c context.Context, event *eventhub.Event) error {
-
-		//	fmt.Println((string(event.Data)))
 
 		err := json.Unmarshal([]byte(string(event.Data)), &data)
 		if err != nil {
 			log.Fatalln("Error json:\n", err)
-		} else {
-			log.Println("Here:")
 		}
-
 		return nil
 	}
 
-	log.Println("Listening for Messages: ")
-	for _, partitionID := range h.PartitionIDs {  
+	for _, partitionID := range h.PartitionIDs {
 		listenerHandle, err := hub.Receive(ctx, partitionID, handler, eventhub.ReceiveWithLatestOffset())
 		if err != nil {
 			log.Fatalln("Error while creating a listener handler")
 		}
-
 		defer listenerHandle.Close(ctx)
-
 	}
 
 	// Wait for a signal to quit:

@@ -18,10 +18,6 @@ func DeviceData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Call the function to ask for data for today.
-
-//	data.GetDeviceData(devID, time.Now().UTC().Day())
-
 	if err := tpl.ExecuteTemplate(w, "devicedata.gohtml", data.GetDeviceData(devID, time.Now().UTC().Day())); err != nil {
 		log.Fatalln("Not able to call the template", err)
 	}
