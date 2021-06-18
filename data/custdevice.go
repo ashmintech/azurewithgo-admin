@@ -7,11 +7,11 @@ type C2D struct {
 
 var C2DList = []C2D{
 	{
-		CustomerID: "custid1",
+		CustomerID: "32891c71-4b55-401f-a819-31950f331b5b",
 		DeviceID:   "smartdevice1",
 	},
 	{
-		CustomerID: "custid1",
+		CustomerID: "32891c71-4b55-401f-a819-31950f331b5b",
 		DeviceID:   "smartdevice2",
 	},
 }

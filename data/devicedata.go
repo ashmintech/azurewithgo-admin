@@ -48,13 +48,16 @@ func GetDeviceData(devID string, day int) []sendDeviceData {
 	return sendData
 }
 
+const (
+	EventHubEndPoint = "Endpoint=sb://goeventhubns.servicebus.windows.net/;SharedAccessKeyName=sendreceive;SharedAccessKey=rP4Lfj2o4hepWWqU9TYkixXines4PSa4emsgkYvfePg=;EntityPath=goeventhub"
+)
+
 func RunEventHubListener() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
-	str := "Endpoint=sb://goeventhubns.servicebus.windows.net/;SharedAccessKeyName=sendreceive;SharedAccessKey=rP4Lfj2o4hepWWqU9TYkixXines4PSa4emsgkYvfePg=;EntityPath=goeventhub"
-	hub, err := eventhub.NewHubFromConnectionString(str)
+	hub, err := eventhub.NewHubFromConnectionString(EventHubEndPoint)
 	if err != nil {
 		log.Fatalln("Not able to create event hub from connection string: \n", err)
 	}

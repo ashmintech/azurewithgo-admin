@@ -18,7 +18,7 @@ type Customer struct {
 
 var customerList = []*Customer{
 	{
-		CustID:       "custid1",
+		CustID:       "32891c71-4b55-401f-a819-31950f331b5b",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "Canada",
