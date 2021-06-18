@@ -1,9 +1,5 @@
 package data
 
-import (
-	"errors"
-)
-
 type Customer struct {
 	CustID       string `json:"customerid"`
 	FName        string `json:"fname"`
@@ -60,15 +56,4 @@ func GetCustomer(custID string) (*Customer, bool) {
 		}
 	}
 	return nil, false
-}
-
-func AddCustomer(p *Customer) (bool, error) {
-
-	for _, b := range customerList {
-		if b.CustID == p.CustID {
-			return false, errors.New("cust id already exists")
-		}
-	}
-	customerList = append(customerList, p)
-	return true, nil
 }
