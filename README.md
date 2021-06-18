@@ -1,4 +1,4 @@
-# Microsoft Azure for GO Developers Course
+# Microsoft Azure SDK for GO Developers Course
 
 ---
 
