@@ -30,7 +30,7 @@ func init() {
 		log.Fatalln("Not able to set environmental variables")
 	}
 
-	// Running the Event Hub listener for Device Data
+	// Running the Event Hub listener for Device Data & Anomaly
 	go data.RunEventHubListener()
 	go data.RunAnomalyListener()
 
