@@ -78,12 +78,12 @@ func RunAnomalyListener() {
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
 
-	hub1, err := eventhub.NewHubFromConnectionString(EventHubAnomalyEndPoint)
+	hub, err := eventhub.NewHubFromConnectionString(EventHubAnomalyEndPoint)
 	if err != nil {
 		log.Fatalln("Not able to create event hub from connection string: \n", err)
 	}
 
-	h1, err := hub1.GetRuntimeInformation(ctx)
+	h, err := hub.GetRuntimeInformation(ctx)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -104,9 +104,9 @@ func RunAnomalyListener() {
 		return nil
 	}
 
-	for _, partitionID := range h1.PartitionIDs {
+	for _, partitionID := range h.PartitionIDs {
 
-		listenerHandle, err := hub1.Receive(ctx, partitionID, handler, eventhub.ReceiveFromTimestamp(time.Now().AddDate(0, 0, -7)))
+		listenerHandle, err := hub.Receive(ctx, partitionID, handler, eventhub.ReceiveFromTimestamp(time.Now().AddDate(0, 0, -7)))
 		if err != nil {
 			log.Fatalln("Error while creating a listener handler")
 		}
@@ -118,7 +118,7 @@ func RunAnomalyListener() {
 	signal.Notify(signalChan, os.Interrupt, os.Kill)
 	<-signalChan
 
-	err = hub1.Close(context.Background())
+	err = hub.Close(context.Background())
 	if err != nil {
 		fmt.Println("There is error while closing the hub", err)
 	}
