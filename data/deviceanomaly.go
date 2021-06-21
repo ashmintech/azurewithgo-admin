@@ -91,7 +91,7 @@ func RunAnomalyListener() {
 	var aData = []DeviceAnomaly{}
 
 	handler := func(c context.Context, event *eventhub.Event) error {
-		//	log.Println("in herer:", string(event.Data))
+		
 		err := json.Unmarshal([]byte(string(event.Data)), &aData)
 
 		for _, a := range aData {
