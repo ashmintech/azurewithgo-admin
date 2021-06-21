@@ -32,5 +32,6 @@ func init() {
 
 	// Running the Event Hub listener for Device Data
 	go data.RunEventHubListener()
+	go data.RunAnomalyListener()
 
 }

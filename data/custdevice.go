@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	C2DCollName = "test"
+	C2DCollName = "cust2device"
 )
 
 type C2D struct {

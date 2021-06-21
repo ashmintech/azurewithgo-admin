@@ -94,16 +94,30 @@
            $("#devicedataframe")[0].src = $("#devicedataframe")[0].src;
        }
    </script>
-   <iframe src="/admin/devicedata/{{$d.DeviceID}}" marginwidth="0" marginheight="0" width="800" height="400" scrolling="no" frameborder=0 name="devicedataframe" id="devicedataframe"></iframe>
-  
+ <div class="col-md-6">
+   <iframe src="/admin/devicedata/{{$d.DeviceID}}" marginwidth="0" marginheight="0" width="600" height="400" scrolling="no" frameborder=0 name="devicedataframe" id="devicedataframe"></iframe>
+  </div>
 {{else}}
    <div class="table-responsive-sm col-md-4">
     <h3>Device is not active.</h3>
     </div>
 {{end}}
 
-
-
+{{if eq $d.DeviceStatus "Active"}}
+<script type="text/javascript">
+       setInterval(refreshIframe2, 20000);
+       function refreshIframe2() {
+           $("#devicedataframe2")[0].src = $("#devicedataframe2")[0].src;
+       }
+   </script>
+ <div class="col-md-6">
+   <iframe src="/admin/deviceanomaly/{{$d.DeviceID}}" marginwidth="0" marginheight="0" width="600" height="400" scrolling="yes" frameborder=0 name="devicedataframe2" id="devicedataframe2"></iframe>
+  </div>
+{{else}}
+   <div class="table-responsive-sm col-md-4">
+    <h3>Device is not active.</h3>
+    </div>
+{{end}}
 
 </body>
 

@@ -24,10 +24,13 @@ func main() {
 	admin.HandleFunc("/admin/devices", cont.Devices)
 	admin.HandleFunc("/admin/devices/{id}", cont.DeviceDetails)
 	admin.HandleFunc("/admin/devicedata/{id}", cont.DeviceData)
+	admin.HandleFunc("/admin/showanomaly", cont.ShowAnomaly)
+	admin.HandleFunc("/admin/deviceanomaly/{id}", cont.DeviceAnomaly)
 	admin.HandleFunc("/admin/customers", cont.Customers)
 	admin.HandleFunc("/admin/customers/{id}", cont.CustomerDetails)
 	admin.HandleFunc("/admin/files", cont.Files)
 	admin.HandleFunc("/admin/devicestatus/{id}", cont.DeviceToggleStatus)
+
 	admin.Use(cont.AdminMiddleware)
 
 	// Static Files
