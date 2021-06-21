@@ -55,7 +55,7 @@ func ShowAnomaly() []sendDeviceAnomaly {
 
 	for i := len(anomalyData) - 1; i >= 0; i-- {
 		b := anomalyData[i]
-		t, _ := time.Parse(time.RFC3339, anomalyData[i].TimeStamp)
+		t, _ := time.Parse(time.RFC3339, b.TimeStamp)
 
 		a := sendDeviceAnomaly{
 			b.DeviceID,
