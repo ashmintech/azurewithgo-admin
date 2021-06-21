@@ -1,7 +1,7 @@
 package data
 
 type Customer struct {
-	CustID       string `json:"customerid"`
+	CustomerID       string `json:"customerid"`
 	FName        string `json:"fname"`
 	LName        string `json:"lname"`
 	Address      string `json:"address"`
@@ -14,7 +14,7 @@ type Customer struct {
 
 var customerList = []*Customer{
 	{
-		CustID:       "32891c71-4b55-401f-a819-31950f331b5b",
+		CustomerID:       "32891c71-4b55-401f-a819-31950f331b5b",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "Canada",
@@ -25,7 +25,7 @@ var customerList = []*Customer{
 		CreationDate: "Apr 10, 2021",
 	},
 	{
-		CustID:       "custid2",
+		CustomerID:       "custid2",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "USA",
@@ -51,7 +51,7 @@ func GetCustomerCount() int {
 func GetCustomer(custID string) (*Customer, bool) {
 
 	for _, b := range customerList {
-		if b.CustID == custID {
+		if b.CustomerID == custID {
 			return b, true
 		}
 	}
