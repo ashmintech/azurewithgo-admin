@@ -30,3 +30,21 @@
 - Azure Event Hub
 - Azure Stream Analytics
 
+## Module 5 Admin Portal
+
+### Environmental Variables
+
+- export AZURE_TENANT_ID=
+- export AZURE_CLIENT_ID=
+- export AZURE_CLIENT_SECRET=
+- export AZURE_SUBSCRIPTION_ID=
+
+### Connection String
+
+- Event Hub Connection string
+- Cosmos DB Connection string
+
+### Azure Services
+
+- Azure Cosmos DB
+- Azure Key Vault

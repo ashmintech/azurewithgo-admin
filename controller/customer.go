@@ -19,7 +19,7 @@ func existCustomer(c string) (*data.Customer, bool) {
 	return data.GetCustomer(c)
 }
 
-func findDevices4Customer(c string) (data.Devices) {
+func findDevices4Customer(c string) data.Devices {
 	return data.GetDevices4Customer(c)
 }
 
@@ -36,7 +36,7 @@ func CustomerDetails(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	d = findDevices4Customer(c.CustID)
+	d = findDevices4Customer(c.CustomerID)
 
 	type sendData struct {
 		Dev  data.Devices

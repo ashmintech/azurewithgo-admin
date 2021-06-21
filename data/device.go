@@ -1,5 +1,15 @@
 package data
 
+import (
+	"log"
+
+	"github.com/globalsign/mgo/bson"
+)
+
+const (
+	DeviceCollName = "devices"
+)
+
 // Devices is a collection of device
 type Devices []*Device
 
@@ -12,6 +22,9 @@ type Device struct {
 	DeviceCreationDate string `json:"devicecreationdate"`
 }
 
+var DeviceList = []*Device{}
+
+/*
 var DeviceList = []*Device{
 	{
 		DeviceID:           "smartdevice1",
@@ -31,50 +44,76 @@ var DeviceList = []*Device{
 		DeviceCreationDate: "May 14, 2021",
 	},
 }
+*/
 
 func GetAllDevices() Devices {
+
+	mcoll := GetCollection(DeviceCollName)
+
+	err = mcoll.Find(nil).Iter().All(&DeviceList)
+	if err != nil {
+		log.Println("Error while querying the Collection:\n", err)
+		return nil
+	}
+
 	return DeviceList
 }
 
 func GetDeviceCount() int {
-	return len(DeviceList)
+
+	mcoll := GetCollection(DeviceCollName)
+
+	n, err := mcoll.Find(nil).Count()
+	if err != nil {
+		log.Println("Error while querying the Collection:\n", err)
+		return 0
+	}
+
+	return n
 }
 
 func GetDevice(d string) (*Device, bool) {
-	for _, b := range DeviceList {
-		if b.DeviceID == d {
-			return b, true
-		}
+
+	var dev Device
+
+	mcoll := GetCollection(DeviceCollName)
+
+	err := mcoll.Find(bson.M{"deviceid": d}).One(&dev)
+	if err != nil {
+		log.Println("Error while querying the Collection:\n", err)
+		return nil, false
 	}
-	return nil, false
+	return &dev, true
 }
 
-func GetDevices(d []string) Devices {
+func GetDevices(deviceList []string) Devices {
 
 	var dList Devices
-
-	for _, devID := range d {
-		for _, d := range DeviceList {
-			if devID == d.DeviceID {
-				dList = append(dList, d)
-			}
+	for _, devID := range deviceList {
+		if d, found := GetDevice(devID); found {
+			dList = append(dList, d)
 		}
 	}
-
 	return dList
-
 }
 
 func ToggleDeviceStatus(d string) (*Device, bool) {
 
+	mcoll := GetCollection(DeviceCollName)
+
 	if dev, found := GetDevice(d); found {
+
 		if dev.DeviceStatus == "Active" {
 			dev.DeviceStatus = "Inactive"
 		} else {
 			dev.DeviceStatus = "Active"
 		}
+		err := mcoll.Update(bson.M{"deviceid": d}, dev)
+		if err != nil {
+			log.Println("Error while updating the Document:\n", err)
+			return nil, false
+		}
 		return dev, true
-
 	} else {
 		return nil, false
 	}

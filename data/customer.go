@@ -1,7 +1,17 @@
 package data
 
+import (
+	"log"
+
+	"github.com/globalsign/mgo/bson"
+)
+
+const (
+	CustomerCollName = "customers"
+)
+
 type Customer struct {
-	CustID       string `json:"customerid"`
+	CustomerID   string `json:"customerid"`
 	FName        string `json:"fname"`
 	LName        string `json:"lname"`
 	Address      string `json:"address"`
@@ -12,48 +22,46 @@ type Customer struct {
 	CreationDate string `json:"creation"`
 }
 
-var customerList = []*Customer{
-	{
-		CustID:       "32891c71-4b55-401f-a819-31950f331b5b",
-		FName:        "Ashish",
-		LName:        "Minocha",
-		Address:      "Canada",
-		Phone:        "(123) 456-7890",
-		Email:        "minocha_ashish@hotmail.com",
-		SubType:      "Premium",
-		Active:       true,
-		CreationDate: "Apr 10, 2021",
-	},
-	{
-		CustID:       "custid2",
-		FName:        "Ashish",
-		LName:        "Minocha",
-		Address:      "USA",
-		Phone:        "(987) 654-3210",
-		Email:        "ashmintech@outlook.com",
-		SubType:      "Standard",
-		Active:       false,
-		CreationDate: "Mar 2 2021",
-	},
-}
+var customerList = []*Customer{}
 
 // Customers is a collection of customer
 type Customers []*Customer
 
 func GetCustomers() Customers {
+
+	mcoll := GetCollection(CustomerCollName)
+
+	err = mcoll.Find(nil).Iter().All(&customerList)
+	if err != nil {
+		log.Println("Customer: Error while querying the Collection:\n", err)
+		return nil
+	}
+
 	return customerList
 }
 
 func GetCustomerCount() int {
-	return len(customerList)
+	mcoll := GetCollection(CustomerCollName)
+
+	n, err := mcoll.Find(nil).Count()
+	if err != nil {
+		log.Println("Customer: Error while querying the Collection:\n", err)
+		return 0
+	}
+
+	return n
 }
 
 func GetCustomer(custID string) (*Customer, bool) {
 
-	for _, b := range customerList {
-		if b.CustID == custID {
-			return b, true
-		}
+	var cust Customer
+
+	mcoll := GetCollection(CustomerCollName)
+
+	err := mcoll.Find(bson.M{"customerid": custID}).One(&cust)
+	if err != nil {
+		log.Println("Customer: Error while querying the Collection:\n", err)
+		return nil, false
 	}
-	return nil, false
+	return &cust, true
 }
