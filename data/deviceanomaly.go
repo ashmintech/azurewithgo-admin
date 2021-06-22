@@ -71,6 +71,7 @@ func ShowAnomaly() []sendDeviceAnomaly {
 
 const (
 	EventHubAnomalyEndPoint = "Endpoint=sb://goeventhubns.servicebus.windows.net/;SharedAccessKeyName=goanomalyjob_eventhuboutput_policy;SharedAccessKey=2ybXYHzX92XqmltxqaSbG0AD67Aa40k7aE5xRg1aMfg=;EntityPath=goanomaly"
+	DeviceAnomalyCollName   = "deviceanomaly"
 )
 
 func RunAnomalyListener() {
@@ -90,18 +91,25 @@ func RunAnomalyListener() {
 
 	var aData = []DeviceAnomaly{}
 
+	mcoll := GetCollection(DeviceAnomalyCollName)
+
 	handler := func(c context.Context, event *eventhub.Event) error {
-		
+
 		err := json.Unmarshal([]byte(string(event.Data)), &aData)
+		if err != nil {
+			log.Fatalln("Error json:\n", err)
+		}
 
 		for _, a := range aData {
 			anomalyData = append(anomalyData, a)
+			mcoll.Insert(a)
 		}
 
 		if err != nil {
 			log.Fatalln("Error json:\n", err)
 		}
 		return nil
+
 	}
 
 	for _, partitionID := range h.PartitionIDs {
