@@ -16,8 +16,6 @@ import (
 
 const ContainerHistoricalName = "deviceanomalydata"
 
-//Struct to consume historical data and pass to the template.
-
 type HistorialData struct {
 	DeviceID  string `json:"deviceid"`
 	TimeStamp string `json:"timestamp"`

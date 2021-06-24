@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"sort"
 	"time"
 
 	eventhub "github.com/Azure/azure-event-hubs-go/v3"
@@ -46,6 +47,11 @@ func GetAnomaly(devID string) []sendDeviceAnomaly {
 			sendData = append(sendData, a)
 		}
 	}
+
+	sort.SliceStable(sendData, func(i, j int) bool {
+		return sendData[i].DateTime > sendData[j].DateTime
+	})
+
 	return sendData
 }
 
@@ -66,6 +72,10 @@ func ShowAnomaly() []sendDeviceAnomaly {
 		sendData = append(sendData, a)
 
 	}
+
+	sort.SliceStable(sendData, func(i, j int) bool {
+		return sendData[i].DateTime > sendData[j].DateTime
+	})
 	return sendData
 }
 
@@ -96,6 +106,7 @@ func RunAnomalyListener() {
 	handler := func(c context.Context, event *eventhub.Event) error {
 
 		err := json.Unmarshal([]byte(string(event.Data)), &aData)
+		//	log.Println(aData)
 		if err != nil {
 			log.Fatalln("Error json:\n", err)
 		}
