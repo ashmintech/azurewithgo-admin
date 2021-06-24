@@ -19,7 +19,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	admin := r.Methods(http.MethodGet).Subrouter()
+	admin := r.Methods(http.MethodGet,http.MethodPost).Subrouter()
 	admin.HandleFunc("/admin", cont.AdminPortal)
 	admin.HandleFunc("/admin/devices", cont.Devices)
 	admin.HandleFunc("/admin/devices/{id}", cont.DeviceDetails)
@@ -31,7 +31,11 @@ func main() {
 	admin.HandleFunc("/admin/files", cont.Files)
 	admin.HandleFunc("/admin/devicestatus/{id}", cont.DeviceToggleStatus)
 	admin.HandleFunc("/admin/devicedatahistorical", cont.DeviceDataHistorical)
-
+	admin.HandleFunc("/admin/files/add", cont.AddFile)
+	admin.HandleFunc("/admin/files/addfile", cont.UploadFile).Methods(http.MethodPost)
+	admin.HandleFunc("/admin/customerprofile/{id}", cont.EditCustomer)
+	admin.HandleFunc("/admin/customerprofile", cont.CustomerProfile).Methods(http.MethodPost)
+	
 	admin.Use(cont.AdminMiddleware)
 
 	// Static Files

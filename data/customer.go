@@ -65,3 +65,20 @@ func GetCustomer(custID string) (*Customer, bool) {
 	}
 	return &cust, true
 }
+
+func PutCustomer(c *Customer, ph string, sub string) bool {
+
+	mcoll := GetCollection(CustomerCollName)
+
+	d := c
+	d.Phone = ph
+	d.SubType = sub
+
+	err := mcoll.Update(bson.M{"customerid": c.CustomerID}, d)
+	if err != nil {
+		log.Println("Customer: Error while updating the Customer:", c.CustomerID, err)
+		return false
+	}
+
+	return true
+}

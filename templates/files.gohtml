@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+
+{{template "topmenu"}}
+  
+ <div class="table-responsive-sm col-md-10">
+<h3>Files</h3> <a href="/admin/files/add">(+ Add File)</a>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">File Name</th>
+      <th scope="col">File Desc</th>
+      <th scope="col">File Type</th>
+      <th scope="col">Date</th>
+      <th scope="col">Download</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  
+  {{range .}}
+    <tr>
+      <th scope="row">{{.FileName}}</th>
+      <td>{{.FileDesc}}</td>
+      <td>{{.FileType}}</td>
+      <td>{{.FileDate}}</td>
+     <td><a href="{{.FilePath}}" target="_blank"><button type="button" class="btn btn-info btn-sm">
+   Download
+</button></a></td>
+    </tr>
+  {{end}} 
+   
+  </tbody>
+</table>
+</div>
+ 
+</body>
+</html>

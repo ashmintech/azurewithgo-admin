@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+
+{{template "topmenu"}}
+
+<div class="table-responsive-sm col-md-6">
+<h3>Add File</h3>
+<form  enctype="multipart/form-data" action="/admin/files/addfile" method="post">
+<table class="table table-hover table-sm">
+  
+  <tbody class="thead-dark">
+    
+    <tr><td> <label for="filename">File Name:</label></td><td><input type="text" id="filename" name="filename" required class="form-control col-lg-4"></td></tr>
+    <tr><td> <label for="filedesc">File Desc:</label></td><td><input type="text" id="filedesc" name="filedesc" required class="form-control col-lg-4"></td></tr>
+    <tr><td> <label for="filetype">File Type:</label></td><td><input type="text" id="filetype" name="filetype" required class="form-control col-lg-4"></td></tr>
+    <tr><td> <label for="uploadedfile:">Select File:</label></td><td><input type="file" id="uploadfile" name="uploadfile" class="form-control" required></td></tr>
+    
+  </tbody>
+
+</table>
+
+<input type="submit" class="btn btn-primary">
+</form>
+</div>
+
+
+</body>
+</html>

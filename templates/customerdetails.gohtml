@@ -5,7 +5,7 @@
 
 {{template "topmenu"}}
 
-<div class="table-responsive-sm col-md-8">
+<div class="table-responsive-sm col-md-10">
 <h3>Customer</h3>
 
 <table class="table table-hover table-sm">
@@ -19,6 +19,7 @@
       <th scope="col">Subscription Type</th>
       <th scope="col">Member Since </th>
       <th scope="col">Active</th>
+      <th scope="col">Edit</th>
      
     </tr>
   </thead>
@@ -37,7 +38,8 @@
       {{else}}
         <td>No</td>
       {{end}}
-            
+      <td><a href="/admin/customerprofile/{{$c.CustomerID}}">Edit Profile</a></td>
+     
     </tr>
   </tbody>
 </table>
