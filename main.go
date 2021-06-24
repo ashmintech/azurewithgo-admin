@@ -30,6 +30,7 @@ func main() {
 	admin.HandleFunc("/admin/customers/{id}", cont.CustomerDetails)
 	admin.HandleFunc("/admin/files", cont.Files)
 	admin.HandleFunc("/admin/devicestatus/{id}", cont.DeviceToggleStatus)
+	admin.HandleFunc("/admin/devicedatahistorical", cont.DeviceDataHistorical)
 
 	admin.Use(cont.AdminMiddleware)
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+
+{{template "topmenu"}}
+  
+<div class="table-responsive-sm col-md-10">
+<h3>Historial Data</h3> 
+{{if .}}
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Device Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Download</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  
+  {{range .}}
+    <tr>
+      <th scope="row">{{.DeviceID}}</th>
+      <td>{{.TimeStamp}}</td>
+     <td><a href="{{.FilePath}}" target="_blank"><button type="button" class="btn btn-info btn-sm">
+   Download
+</button></a></td>
+    </tr>
+  {{end}} 
+   
+</tbody>
+</table>
+{{else}}
+<p> No Historical Data Available </p>
+{{end}}
+</div>
+ 
+</body>
+</html>

@@ -24,9 +24,11 @@ func init() {
 	cSecret := os.Getenv("AZURE_CLIENT_SECRET")
 	tID := os.Getenv("AZURE_TENANT_ID")
 	subscriptionID = os.Getenv("AZURE_SUBSCRIPTION_ID")
+	aName := os.Getenv("AZURE_STORAGE_NAME")
+	aKey := os.Getenv("AZURE_STORAGE_KEY")
 
 	// If any of the value is empty
-	if cID == "" || cSecret == "" || tID == "" || subscriptionID == "" {
+	if cID == "" || cSecret == "" || tID == "" || subscriptionID == "" || aName == "" || aKey == "" {
 		log.Fatalln("Not able to set environmental variables")
 	}
 
