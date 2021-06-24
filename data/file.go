@@ -44,8 +44,6 @@ func GetFiles() Files {
 
 func PutFiles(r *http.Request) (string, bool) {
 
-	//	log.Println("Into Put files")
-
 	r.ParseMultipartForm(10 << 20)
 	file, handler, err := r.FormFile("uploadfile")
 
