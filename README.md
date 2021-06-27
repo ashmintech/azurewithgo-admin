@@ -19,6 +19,7 @@
 - export AZURE_CLIENT_ID=
 - export AZURE_CLIENT_SECRET=
 - export AZURE_SUBSCRIPTION_ID=
+- export EVENTHUB_CONN_STRING=
 
 ### Connection String
 
@@ -38,10 +39,14 @@
 - export AZURE_CLIENT_ID=
 - export AZURE_CLIENT_SECRET=
 - export AZURE_SUBSCRIPTION_ID=
+- export EVENTHUB_CONN_STRING=
+- export EVENTHUB_ANOMALY_CONN_STRING=
+- export COSMOSDB_CONN_STRING=
 
 ### Connection String
 
 - Event Hub Connection string
+- Event Hub Anomaly Connection string
 - Cosmos DB Connection string
 
 ### Azure Services
@@ -56,6 +61,9 @@
 - export AZURE_CLIENT_ID=
 - export AZURE_CLIENT_SECRET=
 - export AZURE_SUBSCRIPTION_ID=
+- export EVENTHUB_CONN_STRING=
+- export EVENTHUB_ANOMALY_CONN_STRING=
+- export COSMOSDB_CONN_STRING=
 - export AZURE_STORAGE_NAME=
 - export AZURE_STORAGE_KEY=
 
@@ -63,6 +71,7 @@
 ### Connection String
 
 - Event Hub Connection string
+- Event Hub Anomaly Connection string
 - Cosmos DB Connection string
 
 ### Azure Services

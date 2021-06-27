@@ -80,11 +80,12 @@ func ShowAnomaly() []sendDeviceAnomaly {
 }
 
 const (
-	EventHubAnomalyEndPoint = "Endpoint=sb://goeventhubns.servicebus.windows.net/;SharedAccessKeyName=goanomalyjob_eventhuboutput_policy;SharedAccessKey=2ybXYHzX92XqmltxqaSbG0AD67Aa40k7aE5xRg1aMfg=;EntityPath=goanomaly"
-	DeviceAnomalyCollName   = "deviceanomaly"
+	DeviceAnomalyCollName = "deviceanomaly"
 )
 
 func RunAnomalyListener() {
+
+	EventHubAnomalyEndPoint := os.Getenv("EVENTHUB_ANOMALY_CONN_STRING")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()
